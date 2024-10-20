@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: "otus"
+      POSTGRES_USER: "psql"
+      POSTGRES_PASSWORD: "psql"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - C:\temp\DBA-2024-09\data:/var/lib/postgresql/data 
+    ports:
+      - "5432:5432"
+volumes:
+  pgdata:
